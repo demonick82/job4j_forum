@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class PostControl {
     private final PostService postService;
@@ -32,7 +30,6 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post) {
-        System.out.println("id=" + post.getId());
         postService.save(post);
         return "redirect:/";
     }
