@@ -1,5 +1,7 @@
 package ru.job4j.forum.control;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,9 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post) {
-        postService.save(post);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        post.setUsername(auth.getName());
+        postService.save(post, auth.getName());
         return "redirect:/";
     }
 
@@ -38,5 +42,18 @@ public class PostControl {
     public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("post", postService.findPostById(id));
         return "/edit";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id) {
+        postService.deletePost(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/myPosts")
+    public String myPosts(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("posts", postService.findByUser(auth.getName()));
+        return "/myPosts";
     }
 }

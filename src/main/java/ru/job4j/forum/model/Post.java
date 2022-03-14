@@ -1,6 +1,7 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -10,10 +11,16 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 1, message = "Это поле не должно быть пустым!!!")
     private String name;
+    private String username;
     private String description;
-
     private LocalDateTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     public static Post of(String name, String description) {
         Post post = new Post();
@@ -52,6 +59,22 @@ public class Post {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

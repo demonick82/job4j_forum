@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -21,7 +21,8 @@
         <div class="row">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value='/reg'/>">Регистрация</a>
+
+                    <a class="nav-link active" th:href="@{/reg}">Регистрация</a>
                 </li>
             </ul>
         </div>
@@ -36,25 +37,24 @@
                     <h3 class="text-center"> Авторизация</h3>
                 </div>
                 <div class="card-body">
-                    <form name='login' action="<c:url value='/login'/>" method='POST'>
+                    <form action="#" method='POST' th:action="@{/login}" th:object="${user}">
                         <div class="mb-3">
-                            <label for="userName" class="form-label">Логин</label>
-                            <input type="text" class="form-control" name="username" id="userName">
+                            <label for="username" class="form-label">Логин</label>
+                            <input type="text" class="form-control" th:name="username" id="username">
                         </div>
+
                         <div class="mb-3">
                             <label for="password" class="form-label">Пароль</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" th:name="password" id="password">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Войти</button>
                         </div>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
-                    <c:if test="${not empty errorMessage}">
-                        <div style="color:red; font-weight: bold; margin: 30px 0px;">
-                            ${errorMessage}
-                        </div>
-                    </c:if>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div th:if="${errorMessage!=null}" th:text="${errorMessage}"
+                         style="color:red; font-weight: bold; margin: 30px 0px;">
+                    </div>
                 </div>
             </div>
         </div>

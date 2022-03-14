@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,12 +16,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="#">
-            Car Accident
+            Forum
         </a>
         <div class="row">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value='/login'/>">Авторизация</a>
+                    <a class="nav-link active" th:href="@{/login}">Авторизация</a>
                 </li>
             </ul>
         </div>
@@ -36,24 +36,22 @@
                     <h3 class="text-center"> Регистрация</h3>
                 </div>
                 <div class="card-body">
-                    <form name='login' action="<c:url value='/reg'/>" method='POST'>
+                    <form action="#" method='POST' th:action="@{/reg}" th:object="${user}">
                         <div class="mb-3">
                             <label for="userName" class="form-label">Логин</label>
-                            <input type="text" class="form-control" name="username" id="userName">
+                            <input type="text" class="form-control" th:name="username" id="userName">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Пароль</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" th:name="password" id="password">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Войти</button>
                         </div>
                     </form>
-                    <c:if test="${not empty errorMessage}">
-                        <div style="color:red; font-weight: bold; margin: 30px 0px;">
-                            ${errorMessage}
-                        </div>
-                    </c:if>
+                    <div th:if="${errorMessage!=null}" th:text="${errorMessage}"
+                         style="color:red; font-weight: bold; margin: 30px 0px;">
+                    </div>
                 </div>
             </div>
         </div>

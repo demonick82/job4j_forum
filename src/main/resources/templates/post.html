@@ -25,7 +25,7 @@
                     <a class="nav-link active" th:href="@{/}">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Войти</a>
+                    <a class="nav-link active" href="#">Войти</a>
                 </li>
             </ul>
         </div>
@@ -36,13 +36,14 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-10">
-                    <div class="col 6">Дмитрий</div>
-                    <div th:text="${post.time}"></div>
+                    <div class="col 6" th:text="${post.username}">Дмитрий</div>
+                    <div th:text=" ${post.time} ">
+                    </div>
                 </div>
-                <div class="col-2">
-                    <a class="btn btn-outline-dark"
-                       th:href="@{/edit/(id=${post.id})}">редактировать</a>
-                </div>
+                <!--                <div class="col-2">
+                                    <a class="btn btn-outline-dark"
+                                       th:href="@{/edit/(id=${post.id})}">редактировать</a>
+                                </div>-->
             </div>
         </div>
         <div class="card-body">

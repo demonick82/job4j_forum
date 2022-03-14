@@ -1,17 +1,26 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String login;
+    private String username;
     private String password;
+    private boolean enabled;
+
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
 
     public User of(String name, String login, String password) {
         User user = new User();
-        user.name = name;
-        user.login = login;
+        user.username = login;
         user.password = password;
         return user;
     }
@@ -24,20 +33,13 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String login) {
+        this.username = login;
     }
 
     public String getPassword() {
@@ -46,6 +48,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     @Override
