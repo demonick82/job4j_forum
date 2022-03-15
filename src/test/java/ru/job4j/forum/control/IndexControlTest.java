@@ -1,4 +1,5 @@
-package ru.job4j.forum;
+package ru.job4j.forum.control;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -10,22 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.job4j.forum.ForumApplication;
 
 @SpringBootTest (classes = ForumApplication.class)
 @AutoConfigureMockMvc
-@WebAppConfiguration
-public class RegControlTest {
+public class IndexControlTest {
+
     @Autowired
     private  MockMvc mockMvc;
 
     @Test
     @WithMockUser
-    public void shouldReturnRegMessage() throws Exception {
-        this.mockMvc.perform(get("/reg"))
+    public void shouldReturnDefaultMessage() throws Exception {
+        this.mockMvc.perform(get("/index"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("/reg"));
+                .andExpect(view().name("/index"));
     }
 }
