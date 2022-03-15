@@ -15,8 +15,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest (classes = ForumApplication.class)
-@WebAppConfiguration
 @AutoConfigureMockMvc
+@WebAppConfiguration
 public class IndexControlTest {
 
     @Autowired
