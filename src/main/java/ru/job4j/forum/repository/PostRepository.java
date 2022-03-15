@@ -9,6 +9,7 @@ import java.util.Collection;
 public interface PostRepository extends CrudRepository<Post, Integer> {
     Post findById(int id);
 
-    @Query("select distinct p from Post p join fetch p.user u where u.username=?1")
-    Collection<Post> findPostsByUser(String userName);
+    /*    @Query("select distinct p from Post p join fetch p.user u where u.username=?1")
+        Collection<Post> findPostsByUser(String userName);*/
+    Collection<Post> findPostsByUsername(String name);
 }

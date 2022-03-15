@@ -42,6 +42,6 @@ public class PostService {
     }
 
     public Collection<Post> findByUser(String name) {
-        return repository.findPostsByUser(name);
+        return repository.findPostsByUsername(name);
     }
 }
