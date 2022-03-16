@@ -18,20 +18,22 @@
         </a>
         <div class="row">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active"> Приветствуем Вас</a>
+                <li class="nav-item" th:switch="${username}">
+                    <a class="nav-link active" th:case="'anonymousUser'">Приветствуем Вас Гость</a>
+                    <a class="nav-link active" th:case="*" th:text="'Приветствуем Вас: '+ ${username}"> </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/}">Главная</a>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
                     <a class="nav-link active" th:href="@{/create}">Новый пост</a>
                 </li>
-                <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
                     <a class="nav-link active" th:href="@{/myPosts}">Мои посты</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/logout}">Выйти</a>
+                <li class="nav-item" th:switch="${username}">
+                    <a class="nav-link active" th:case="'anonymousUser'" th:href="@{/login}">Войти</a>
+                    <a class="nav-link active" th:case="*" th:href="@{/logout}">Выйти</a>
                 </li>
 
             </ul>
@@ -51,10 +53,10 @@
         <tr th:each="post : ${posts}">
             <td><a th:text="${post.name}" th:href="@{/post/(id=${post.id})}"> </a></td>
             <td th:text="${post.time}"></td>
-            <td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-outline-dark"
-                                                          th:href="@{/edit/(id=${post.id})}">редактировать</a></td>
-            <td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-outline-dark"
-                   th:href="@{/delete/(id=${post.id})}">удалить</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-outline-dark"
+                                                         th:href="@{/edit/(id=${post.id})}">редактировать</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-outline-dark"
+                                                         th:href="@{/delete/(id=${post.id})}">удалить</a></td>
         </tr>
         </tbody>
     </table>
