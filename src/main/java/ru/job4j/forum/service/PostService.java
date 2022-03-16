@@ -31,9 +31,8 @@ public class PostService {
         return repository.findById(id);
     }
 
-    public void save(Post post, String userName) {
+    public void save(Post post) {
         post.setTime(LocalDateTime.now());
-        post.setUser(userRepository.findByUsername(userName));
         repository.save(post);
     }
 

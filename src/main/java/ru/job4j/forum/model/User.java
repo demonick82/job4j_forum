@@ -3,6 +3,7 @@ package ru.job4j.forum.model;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "users")
@@ -81,5 +82,16 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("username='" + username + "'")
+                .add("password='" + password + "'")
+                .add("enabled=" + enabled)
+                .add("authority=" + authority)
+                .toString();
     }
 }

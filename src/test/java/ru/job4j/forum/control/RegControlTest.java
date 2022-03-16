@@ -1,4 +1,5 @@
 package ru.job4j.forum.control;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -13,11 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.forum.ForumApplication;
 
-@SpringBootTest (classes = ForumApplication.class)
+
+@SpringBootTest(classes = ForumApplication.class)
 @AutoConfigureMockMvc
 public class RegControlTest {
     @Autowired
-    private  MockMvc mockMvc;
+    private MockMvc mockMvc;
+
 
     @Test
     @WithMockUser
