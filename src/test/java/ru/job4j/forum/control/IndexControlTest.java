@@ -27,6 +27,6 @@ public class IndexControlTest {
         this.mockMvc.perform(get("/index"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("/index"));
+                .andExpect(view().name("index"));
     }
 }
