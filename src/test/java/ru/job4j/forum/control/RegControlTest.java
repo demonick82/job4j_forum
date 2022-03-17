@@ -28,6 +28,6 @@ public class RegControlTest {
         this.mockMvc.perform(get("/reg"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("/reg"));
+                .andExpect(view().name("reg"));
     }
 }

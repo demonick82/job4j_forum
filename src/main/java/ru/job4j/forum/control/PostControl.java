@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.UserRepository;
 import ru.job4j.forum.service.PostService;
 
@@ -26,12 +25,12 @@ public class PostControl {
     @GetMapping("/post")
     public String post(@RequestParam("id") int id, Model model) {
         model.addAttribute("post", postService.findPostById(id));
-        return "/post";
+        return "post";
     }
 
     @GetMapping("/create")
     public String create() {
-        return "/create";
+        return "create";
     }
 
     @PostMapping("/save")
@@ -45,7 +44,7 @@ public class PostControl {
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("post", postService.findPostById(id));
-        return "/edit";
+        return "edit";
     }
 
     @GetMapping("/delete")
@@ -58,6 +57,6 @@ public class PostControl {
     public String myPosts(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("posts", postService.findByUser(auth.getName()));
-        return "/myPosts";
+        return "myPosts";
     }
 }

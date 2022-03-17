@@ -32,7 +32,7 @@ public class RegControl {
 
     @GetMapping("/reg")
     public String regPage() {
-        return "/reg";
+        return "reg";
     }
 
 }

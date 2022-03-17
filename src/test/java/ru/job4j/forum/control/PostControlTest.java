@@ -44,7 +44,7 @@ public class PostControlTest {
         this.mockMvc.perform(get("/create"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("/create"));
+                .andExpect(view().name("create"));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PostControlTest {
         this.mockMvc.perform(get("/myPosts"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("/myPosts"));
+                .andExpect(view().name("myPosts"));
     }
 
     @Test
