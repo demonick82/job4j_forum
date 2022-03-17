@@ -12,6 +12,7 @@
     <artifactId>forum</artifactId>
     <version>1</version>
     <name>forum</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
