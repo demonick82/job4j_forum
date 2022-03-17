@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.UserRepository;
 import ru.job4j.forum.service.PostService;
 
@@ -36,7 +37,9 @@ public class PostControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Post post) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        post.setUser(userRepository.findByUsername(auth.getName()));
+        User user = userRepository.findByUsername(auth.getName());
+        post.setUser(user);
+        post.setUsername(user.getUsername());
         postService.save(post);
         return "redirect:/";
     }
@@ -56,6 +59,7 @@ public class PostControl {
     @GetMapping("/myPosts")
     public String myPosts(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //System.out.println("user-Name= " + postService.findByUser(auth.getName()));
         model.addAttribute("posts", postService.findByUser(auth.getName()));
         return "myPosts";
     }

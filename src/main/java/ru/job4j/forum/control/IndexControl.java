@@ -19,7 +19,6 @@ public class IndexControl {
     @GetMapping({"/", "/index"})
     public String index(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("name=" + auth.getName());
         model.addAttribute("posts", postService.findAllPosts());
         model.addAttribute("username", auth.getName());
         return "index";
