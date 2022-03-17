@@ -59,7 +59,6 @@ public class PostControl {
     @GetMapping("/myPosts")
     public String myPosts(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //System.out.println("user-Name= " + postService.findByUser(auth.getName()));
         model.addAttribute("posts", postService.findByUser(auth.getName()));
         return "myPosts";
     }
