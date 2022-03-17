@@ -22,7 +22,7 @@ public class IndexControl {
         System.out.println("name=" + auth.getName());
         model.addAttribute("posts", postService.findAllPosts());
         model.addAttribute("username", auth.getName());
-        return "/index";
+        return "index";
     }
 
 }
