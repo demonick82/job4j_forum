@@ -1,7 +1,6 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.StringJoiner;
 

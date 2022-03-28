@@ -30,8 +30,8 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-10">
-                    <div class="col 6" th:text="${post.username}"></div>
-                    <div th:text=" ${post.time} ">
+                        <h4 class="col 6" th:text="${post.username}"></h4>
+                    <div th:text="${#temporals.format(post.time, 'dd-MM-yyyy HH:mm')}">
                     </div>
                 </div>
             </div>
